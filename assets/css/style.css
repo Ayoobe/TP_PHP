@@ -294,3 +294,41 @@ th:last-child{
     color: #ffffff;
 }
 
+/*login*/
+
+.form-weight-bold{
+    font-weight: 100;
+    text-decoration-style: underline;
+    text-decoration-color: #fa2e2e;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.5em;  
+    text-decoration-line: underline;
+    text-decoration-skip-ink: none;
+    
+}
+
+#login-form{
+    width: 50%;
+    margin: 5px auto;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #fa2e2e;
+}
+
+#login-form input{
+    width: 50%;
+    margin: 5px auto;
+}
+
+#login-form #login-btn{
+    width: 50%;
+    margin: 5px auto;
+    background-color: #fa2e2e;
+    color: #ffffff;
+}
+
+#login-form #login-btn:hover{
+    transition: opacity 0.4s ease;
+    opacity: .8;
+}
+ 

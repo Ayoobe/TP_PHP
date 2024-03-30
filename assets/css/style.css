@@ -331,4 +331,70 @@ th:last-child{
     transition: opacity 0.4s ease;
     opacity: .8;
 }
+
+#login-form #register-url{
+    color: #fa2e2e;
+}
+ 
+/*register*/
+
+#register-form{
+    width: 50%;
+    margin: 5px auto;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #fa2e2e;
+}
+
+#register-form input{
+    width: 50%;
+    margin: 5px auto;
+}
+
+#register-form #register-btn{
+    width: 50%;
+    margin: 5px auto;
+    background-color: #fa2e2e;
+    color: #ffffff;
+}
+
+#register-form #register-btn:hover{
+    transition: opacity 0.4s ease;
+    opacity: .8;
+}
+
+#register-form #register-url{
+    color: #fa2e2e;
+}
+ 
+/*checkout*/
+
+#checkout-form{
+    width: 50%;
+    margin: 5px auto;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #fa2e2e;
+}
+
+#checkout-form input{
+    width: 50%;
+    margin: 5px auto;
+}
+
+#checkout-form #checkout-btn{
+    width: 50%;
+    margin: 5px auto;
+    background-color: #fa2e2e;
+    color: #ffffff;
+}
+
+#checkout-form #checkout-btn:hover{
+    transition: opacity 0.4s ease;
+    opacity: .8;
+}
+
+#checkout-form #checkout-url{
+    color: #fa2e2e;
+}
  

@@ -332,3 +332,24 @@ th:last-child{
     opacity: .8;
 }
  
+/* Account */
+#account-form {
+    width : 50%;
+    margin : 35px auto ; 
+    text-align: center;
+    padding : 20px ; 
+
+}
+#account-form input {
+    margin : 5px auto ; 
+
+}
+#account-form #change-pass-btn{
+    color :#fff; 
+    background-color: #fb774b ;
+}
+
+#account-form #orders-btn , #logout-btn {
+    color: #fb774b ; 
+    text-decoration: none;
+}

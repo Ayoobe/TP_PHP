@@ -113,30 +113,27 @@
     </div>
 
     <div class="row mx-auto text-center container-fluid">
-        <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="assets/imgs/featured1.jpg"/>
-            <h5 class="p-name">Workshop 1</h5>
-            <h4 class="p-info"> further details</h4>
 
+    <?php  include ('server/get_featured_events.php'); ?>
+
+    <?php while($row = $featured_events->fetch_assoc()) { ?>
+        <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">
+            <img class="img-fluid mb-3" src="assets/imgs/<?php echo $row ['event_image1']; ?> "/>
+            <h4 class="p-name"> <?php echo $row['event_name'] ?></h4>
+
+
+            <?php
+            $datetime = new DateTime($row['event_datetime']);
+            $date = $datetime->format('Y-m-d');
+            $time = $datetime->format('H:i A');
+            ?>
+            
+            <h5 class="p-info"><?php echo $date ?></h5>
+            <h5 class="p-info">At <?php echo $time ?></h5>
             <button class="reg-btn"> register now</button>
         </div>
 
-        <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="assets/imgs/featured1.jpg"/>
-            <h5 class="p-name">Contest 2</h5>
-            <h4 class="p-info"> further details</h4>
-
-            <button class="reg-btn"> register now</button>
-        </div>
-
-        <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="assets/imgs/featured1.jpg"/>
-            <h5 class="p-name">event 3</h5>
-            <h4 class="p-info"> further details</h4>
-
-            <button class="reg-btn"> register now</button>
-        </div>
-        
+     <?php } ?>   
     </div>
 </section>
 

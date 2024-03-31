@@ -14,29 +14,29 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 fixed-top">
     <div class="container">
       <img src="assets/imgs/logo.jpg" >
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="index.html">Navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Reserve</a>
+            <a class="nav-link" href="reserve.html">Reserve</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="contact.html">Contact</a>
           </li>
   
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="account.html">
               <i class="fas fa-user"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="cart.html">
               <i class="fas fa-shopping-cart"></i>
             </a>
           </li>
@@ -113,30 +113,26 @@
     </div>
 
     <div class="row mx-auto text-center container-fluid">
-        <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="assets/imgs/featured1.jpg"/>
-            <h5 class="p-name">Workshop 1</h5>
-            <h4 class="p-info"> further details</h4>
 
-            <button class="reg-btn"> register now</button>
+    <?php  include ('server/get_featured_events.php'); ?>
+
+    <?php while($row = $featured_events->fetch_assoc()) { ?>
+        <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">
+        <a href="<?php echo "single-event.php?event_id=".$row['event_id']; ?>"><img class="img-fluid mb-3" src="assets/imgs/<?php echo $row ['event_image1']; ?> "/></a>
+            <h4 class="p-name"> <?php echo $row['event_name'] ?></h4>
+
+
+            <?php
+            $datetime = new DateTime($row['event_datetime']);
+            $date = $datetime->format('Y-m-d');
+            $time = $datetime->format('H:i A');
+            ?>
+
+            <h5 class="p-info"><?php echo $date ?></h5>
+            <h5 class="p-info">At <?php echo $time ?></h5>
         </div>
 
-        <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="assets/imgs/featured1.jpg"/>
-            <h5 class="p-name">Contest 2</h5>
-            <h4 class="p-info"> further details</h4>
-
-            <button class="reg-btn"> register now</button>
-        </div>
-
-        <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="assets/imgs/featured1.jpg"/>
-            <h5 class="p-name">event 3</h5>
-            <h4 class="p-info"> further details</h4>
-
-            <button class="reg-btn"> register now</button>
-        </div>
-        
+     <?php } ?>   
     </div>
 </section>
 

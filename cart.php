@@ -1,3 +1,10 @@
+<?php
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +28,7 @@
       <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="reserve.html">Reserve</a>
@@ -36,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cart.html">
+            <a class="nav-link" href="cart.php">
               <i class="fas fa-shopping-cart"></i>
             </a>
           </li>

@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="reserve.html">Reserve</a>
@@ -118,7 +118,7 @@
 
     <?php while($row = $featured_events->fetch_assoc()) { ?>
         <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="assets/imgs/<?php echo $row ['event_image1']; ?> "/>
+        <a href="<?php echo "single-event.php?event_id=".$row['event_id']; ?>"><img class="img-fluid mb-3" src="assets/imgs/<?php echo $row ['event_image1']; ?> "/></a>
             <h4 class="p-name"> <?php echo $row['event_name'] ?></h4>
 
 
@@ -127,10 +127,9 @@
             $date = $datetime->format('Y-m-d');
             $time = $datetime->format('H:i A');
             ?>
-            
+
             <h5 class="p-info"><?php echo $date ?></h5>
             <h5 class="p-info">At <?php echo $time ?></h5>
-            <button class="reg-btn"> register now</button>
         </div>
 
      <?php } ?>   

@@ -440,4 +440,13 @@ th:last-child{
     transition: opacity 0.4s ease;
     opacity: .8;
 }
+
+.btn-red {
+    color: red;
+}
+
+.btn-red:hover {
+    color: darkred;
+}
+
   

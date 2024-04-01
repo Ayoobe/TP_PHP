@@ -154,8 +154,15 @@ $_SESSION['total']=calculate_total();
             </tr>
         </table>
     </div>
+
+
+
+
 <div class="checkout-container">
-    <button class="checkout-btn"> Checkout</button>
+  <form method="POST" action="checkout.php">
+    <button class="checkout-btn" value="checkout" name="checkout"> Checkout</button>
+  </form>
+    
 </div>
 
 </section>

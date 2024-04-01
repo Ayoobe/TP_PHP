@@ -289,7 +289,7 @@ th:last-child{
     justify-content: flex-end;
   
 }
-.checkout btn{
+.checkout .btn{
     background-color: #ef3636;
     color: #ffffff;
 }
@@ -366,6 +366,14 @@ th:last-child{
 #register-form #register-url{
     color: #fa2e2e;
 }
+
+#checkout-form #checkout-btn{
+    width: 50%;
+    margin: 5px auto;
+    background-color: #fa2e2e;
+    color: #ffffff;
+}
+
  
 /*checkout*/
 
@@ -399,14 +407,14 @@ th:last-child{
 }
  
 .remove-btn {
-    background-color: transparent; /* Set background color to transparent */
-    border: none; /* Remove border */
-    cursor: pointer; /* Change cursor to pointer on hover */
+    background-color: transparent;  
+    border: none;  
+    cursor: pointer;  
     position: relative;
   }
   
   .remove-btn:hover {
-    background-color: transparent; /* Set background color to transparent on hover */
+    background-color: transparent;  
   }
   
   .remove-btn i {
@@ -419,5 +427,17 @@ th:last-child{
     align-items: flex-start;
 
  
+}
+
+#login-btn {
+    width: 50%;
+    margin: 5px auto;
+    background-color: #fa2e2e;
+    color: #ffffff;
+}
+
+#login-btn:hover {
+    transition: opacity 0.4s ease;
+    opacity: .8;
 }
   

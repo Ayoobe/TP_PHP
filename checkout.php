@@ -1,3 +1,23 @@
+<?php  
+session_start();
+
+if(!empty($_SESSION['cart']) && isset($_POST['checkout'])){
+
+
+}
+else{
+    echo "<script>alert('Cart is empty. Cannot proceed to checkout')</script>";
+    echo "<script>window.location='cart.php'</script>";
+}
+
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +75,7 @@
       <hr class="mx-auto">
     </div>
     <div class="mx-auto container">
-      <form id="register-form">
+      <form id="checkout-form" method="POST" action="server/place_order.php">
           <div class="form-group">
               <label >Name</label>
               <input type="text" class="form-control" id="checkout-Name" name="Name" placeholder="Name" required>
@@ -66,7 +86,7 @@
         </div>
         <div class="form-group">
           <label >Phone Number</label>
-          <input type="tel" class="form-control" id="register-phone" name="phone" placeholder="Phone Number" required>
+          <input type="tel" class="form-control" id="checkout-phone" name="phone" placeholder="Phone Number" required>
         </div>
   
         <div class="form-group">
@@ -76,7 +96,7 @@
   
   
         <div class="form-group">
-          <input type="Submit" class="btn" id="register-btn" value="Checkout">
+          <input type="Submit" class="btn" id="register-btn" name="place_order" value="Place Order">
         </div>  
       </form>
     </div>

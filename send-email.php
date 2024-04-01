@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-        $mail->Username = "achref.benammar404@gmail.com"; 
-        $mail->Password = "achrefyammous"; 
+        $mail->Username = ""; 
+        $mail->Password = ""; 
 
         // Loop through each form submission
         foreach ($emails as $key => $email) {

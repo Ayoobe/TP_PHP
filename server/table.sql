@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS `event` (
     `event_name` VARCHAR(100) NOT NULL,
     `event_description` TEXT NOT NULL,
     `event_category` VARCHAR(50) NOT NULL,
-    `event_date` DATE NOT NULL,
     `event_datetime` DATETIME NOT NULL,
     `event_image1` VARCHAR(255) NOT NULL,
     `event_image2` VARCHAR(255) NOT NULL,

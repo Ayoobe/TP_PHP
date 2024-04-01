@@ -1,4 +1,51 @@
 <?php
+session_start();
+
+if (isset($_POST['add_to_cart'])) {
+    if (isset($_SESSION['cart'])) {
+        $event_id = $_POST['event_id'];
+        $events_array_ids = array_column($_SESSION['cart'], 'event_id');
+        if (!in_array($_POST['event_id'], $events_array_ids)) {
+            $event_array = array(
+                'event_id' => $_POST['event_id'],
+                'event_name' => $_POST['event_name'],
+                'event_price' => $_POST['event_price'],
+                'event_image1' => $_POST['event_image1'],
+                'event_datetime' => $_POST['event_datetime'],
+            );
+            $_SESSION['cart'][$_POST['event_id']] = $event_array;
+        } else {
+            echo "<script>alert('Event is already added to the cart')</script>";
+        }
+    } else {
+        $event_id = $_POST['event_id'];
+        $event_name = $_POST['event_name'];
+        $event_price = $_POST['event_price'];
+        $event_image1 = $_POST['event_image1'];
+        $event_datetime = $_POST['event_datetime'];
+
+        $event_array = array(
+            'event_id' => $event_id,
+            'event_name' => $event_name,
+            'event_price' => $event_price,
+            'event_image1' => $event_image1,
+            'event_datetime' => $event_datetime,
+        );
+        $_SESSION['cart'][$event_id] = $event_array;
+    }
+} else if (isset($_POST['remove_event'])) {
+    unset($_SESSION['cart'][$_POST['event_id']]);
+}
+
+function calculate_total() {
+    $total = 0;
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $total += $value['event_price'];
+    }
+    return $total;
+}
+
+$_SESSION['total']=calculate_total();
 
 
 
@@ -66,72 +113,44 @@
             <th>Date</th>
         </tr>
         <tr>
+          <?php foreach($_SESSION['cart'] as $key => $value){ ?>
+
+
             <td>
                 <div class="event-info">
-                    <img src="assets/imgs/featured1.jpg" alt="">
+                    <img src="assets/imgs/<?php echo $value['event_image1'];?> ">
                     <div>
-                        <p>first event</p>
-                        <small><span>69$</span></small>
-                        <a class="remove-btn"  href="#"></a>
+                        <p><?php echo $value['event_name'];?> </p>
+                        <form method="POST" action="cart.php">
+                        <button type="submit" name="remove_event" class="remove-btn">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                          <input type="hidden" name="event_id" value ="<?php echo $value['event_id'];?>" >
+                        </form>
                     </div>
                 </div>
             </td>
             <td> <span>$</span>
-                <span class="event-price">69</span>
+                <span class="event-price"><?php echo $value['event_price'];?> </span>
             </td>
             <td>
-                DDMMYYYY
+            <?php
+            $datetime = new DateTime($value['event_datetime']);
+            $date = $datetime->format('Y-m-d');
+            $time = $datetime->format('H:i A');
+             echo $date. ' At ' .$time?> 
             </td>
         </tr>
-        <tr>
-            <td>
-                <div class="event-info">
-                    <img src="assets/imgs/featured1.jpg" alt="">
-                    <div>
-                        <p>first event</p>
-                        <small><span>69$</span></small>
-                        <a class="remove-btn"  href="#"></a>
-                    </div>
-                </div>
-            </td>
-            <td> <span>$</span>
-                <span class="event-price">69</span>
-            </td>
-            <td>
-                DDMMYYYY
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="event-info">
-                    <img src="assets/imgs/featured1.jpg" alt="">
-                    <div>
-                        <p>first event</p>
-                        <small><span>69$</span></small>
-                        <a class="remove-btn"  href="#"></a>
-                    </div>
-                </div>
-            </td>
-            <td> <span>$</span>
-                <span class="event-price">69</span>
-            </td>
-            <td>
-                DDMMYYYY
-            </td>
-        </tr>
+        <?php } ?>
 
     </table>
     <div class="cart-total">
         <table>
             <tr>
-                <td>Subtotal</td>
-                <td>$42069</td>
-            </tr>
-            <tr>
                 <td>
                     Total
                 </td>
-                <td>$42069</td>
+                <td><?php echo $_SESSION['total'];?></td>
             </tr>
         </table>
     </div>

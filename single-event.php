@@ -99,9 +99,11 @@ else {
             <h3> <?php echo $row['event_price'] ?> TND </h3>
 
             <form method="POST" action="cart.php" >
+              <input type="hidden" name="event_id" value="<?php echo $row ['event_id']; ?>">
               <input type="hidden" name="event_image1" value="<?php echo $row ['event_image1']; ?>">
               <input type="hidden" name="event_name" value="<?php echo $row ['event_name']; ?>">
               <input type="hidden" name="event_price" value="<?php echo $row ['event_price']; ?>">
+              <input type="hidden" name="event_datetime" value="<?php echo $row ['event_datetime']; ?>">
               <button type="submit" name="add_to_cart">Add To Cart</button>
 
             </form>

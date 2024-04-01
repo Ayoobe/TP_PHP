@@ -398,3 +398,26 @@ th:last-child{
     color: #fa2e2e;
 }
  
+.remove-btn {
+    background-color: transparent; /* Set background color to transparent */
+    border: none; /* Remove border */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    position: relative;
+  }
+  
+  .remove-btn:hover {
+    background-color: transparent; /* Set background color to transparent on hover */
+  }
+  
+  .remove-btn i {
+    color: red;  
+    position: relative;
+    top:-25px;
+    left: -15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+ 
+}
+  

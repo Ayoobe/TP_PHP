@@ -1,6 +1,12 @@
 <?php
 include ('server/connection.php');
 session_start();
+
+if(isset($_SESSION['logged_in'])){
+  header('location: index.php');
+  exit();
+}
+
 if(isset($_POST['register'])){
   
     $Name=$_POST['Name'];
@@ -37,10 +43,7 @@ if(isset($_POST['register'])){
   }
 }
 
-else if(isset($_SESSION['logged_in'])){
-    header('location: account.php');
-    exit();
-}
+
     
 
 

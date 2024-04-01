@@ -449,4 +449,49 @@ th:last-child{
     color: darkred;
 }
 
+
+/*account*/
+#account-form{
+    width: 50%;
+    margin: 45px auto;
+    padding: 20px;
+    text-align: center;
+
+}
+
+#account-form input{
+    margin: 5px auto;
+}
+
+#account-form #change-pass-btn{
+    width: 80%;
+    margin: 5px auto;
+    background-color: #fa2e2e;
+    color: #ffffff;
+}
+
+#account-form #change-pass-btn:hover{
+    transition: opacity 0.4s ease;
+    opacity: .8;
+}
+
+.account-info #orders-btn ,#logout-btn{
+    width: 80%;
+    margin: 5px auto;
+    color: #fa2e2e;
+  
+}
+
+.account-info #orders-btn:hover ,#logout-btn:hover{
+    transition: opacity 0.4s ease;
+    opacity: .8;
+}
+
+#account-form #change-pass-url{
+    color: #fa2e2e;
+}
+
+
+
+
   

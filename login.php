@@ -1,6 +1,12 @@
 <?php 
 session_start();
 include ('server/connection.php');
+
+if(isset($_SESSION['logged_in'])){
+  header('location: index.php');
+  exit();
+}
+
 if(isset($_POST['login_btn'])){
   $email=$_POST['email'];
   $password=$_POST['password'];
@@ -102,7 +108,7 @@ if(isset($_POST['login_btn'])){
         <input type="Submit" class="btn" id="login-btn" name="login_btn" value="login">
       </div>
       <div class="form-group">
-        <a id="register-url" class="btn" href="">Not a member ? Sign Up Now!</a>
+        <a id="register-url" class="btn" href="register.php">Not a member ? Sign Up Now!</a>
 
       </div>
 

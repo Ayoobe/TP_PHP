@@ -1,3 +1,49 @@
+<?php
+
+session_start();
+if(!isset($_SESSION['logged_in'])){
+  header('location: login.php');
+  exit();
+}
+
+if(isset($_GET['logout'])){
+  session_destroy();
+  unset($_SESSION['user_email']);
+  unset($_SESSION['user_name']);
+  unset($_SESSION['logged_in']);
+  header('location: login.php');
+  exit();
+}
+
+if(isset($_POST['change_password'])){
+  include ('server/connection.php');
+  $password=$_POST['password'];
+  $confirmPassword=$_POST['confirmPassword'];
+  if($password!=$confirmPassword){
+    header('location: account.php?error=Passwords do not match');
+  }
+  else if(strlen($password)<6){
+    header('location: account.php?error=Password must be at least 6 characters long');
+  }
+  else{
+    $stmt=$conn->prepare("UPDATE users SET user_password=? WHERE user_email=?");
+    $stmt->bind_param("ss", md5($password), $_SESSION['user_email']);
+    $stmt->execute();
+    header('location: account.php?success=Password changed successfully');
+  }
+}
+
+
+
+
+?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,45 +96,37 @@
 
 <!--Account-->
 <section class="my-5 py-5">
-  <div class="container">
-    <div class="row">
-      <!-- Account info -->
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="text-center mt-5 pt-5">
+  <div class="row container mx-auto">
+      <div class="text-center mt-3 pt-5 col-lg-6 col-md-6 col-sm-12">
           <h3 class="font-weight-bold">Account info</h3>
           <hr class="mx-auto">
           <div class="account-info">
-            <p>Name: <span>John</span></p>
-            <p>Email: <span>john@email.com</span></p>
-            <p><a  class="btn" id="login-btn"   href="">Your orders</a></p>
-            <p><a  class="btn" id="login-btn"  href="">Logout</a></p>
-            
-            
+            <p>Name: <span><?php if(isset( $_SESSION['user_name'])){ echo $_SESSION['user_name'];}?></span></p>
+            <p>Email: <span><?php if(isset( $_SESSION['user_email'])){echo $_SESSION['user_email'];}?></p>
+            <p><a   href="cart.php" id="orders-btn" >Your Cart</a></p>
+            <p><a  href="account.php?logout=1" id="logout-btn"  >Logout</a></p>
           </div>
         </div>
-      </div>
 
       <!-- Change password -->
-      <div class=" col-md-6 col-sm-12">
-        <form id="account-form" class=" mt-5 pt-5">
-          <h3  class="text-center">Change password</h3>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <form id="account-form" method="POST" action="account.php" >
+          <p class="text-center" style="color:green"><?php if(isset( $_GET['message'])){ echo $_GET['message'];}?></p>
+          <h3>Change password</h3>
           <hr class="mx-auto">
           <div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" id="account-password" placeholder="Password" name="password" required>
           </div>
           <div class="form-group">
-            <label>Confirm password</label>
+            <label>Confirm Password</label>
             <input type="password" class="form-control" id="account-password-confirm" placeholder="Confirm Password" name="confirmPassword" required>
           </div>
           <div class="form-group">
-            <input type="submit" value="Change Password" class="btn" id="login-btn">
+            <input type="submit" value="Change Password" class="btn" id="change-pass-btn" name="change_password">
           </div>
         </form>
       </div>
-      
-    </div>
-  </div>
 </section>
 
 

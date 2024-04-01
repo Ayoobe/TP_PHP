@@ -130,8 +130,9 @@ $_SESSION['total']=calculate_total();
                     </div>
                 </div>
             </td>
-            <td> <span>$</span>
+            <td> 
                 <span class="event-price"><?php echo $value['event_price'];?> </span>
+                <span>TND</span>
             </td>
             <td>
             <?php
@@ -150,7 +151,7 @@ $_SESSION['total']=calculate_total();
                 <td>
                     Total
                 </td>
-                <td><?php echo $_SESSION['total'];?></td>
+                <td><?php echo $_SESSION['total'];?> TND</td>
             </tr>
         </table>
     </div>

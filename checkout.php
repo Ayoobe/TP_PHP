@@ -14,10 +14,6 @@ else{
 
 ?>
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +23,48 @@ else{
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-</head>
+  <style>
+    /* Custom CSS for checkout page */
+    body {
+      background-color: #333;
+      color: #fff;
+    }
 
+    .navbar {
+      background-color: #400000;
+    }
+
+    .navbar-brand {
+      color: #fff;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+    }
+
+    .form-group label {
+      color: #fff;
+    }
+
+    .btn-primary {
+      background-color: #800000;
+      border-color: #800000;
+    }
+
+    .btn-primary:hover {
+      background-color: #990000;
+      border-color: #990000;
+    }
+
+    .footer-one {
+      color: #fff;
+    }
+
+    .social-icons a {
+      color: #fff;
+    }
+  </style>
+</head>
 <body>
     <!-- start of navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 fixed-top">
@@ -96,7 +132,7 @@ else{
   
   
         <div class="form-group">
-          <input type="Submit" class="btn" id="register-btn" name="place_order" value="Place Order">
+          <input type="Submit" class="btn btn-primary btn-lg" id="register-btn" name="place_order" value="Place Order">
         </div>  
       </form>
     </div>
@@ -139,4 +175,3 @@ else{
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
-

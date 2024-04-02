@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `event` (
     `event_price` DECIMAL(10,2) NOT NULL,  
     `event_name` VARCHAR(100) NOT NULL,
     `event_description` TEXT NOT NULL,
-    `event_category` VARCHAR(50) NOT NULL,
+    `event_category` ENUM('workshop', 'congress', 'contest','hackathon') NOT NULL,
     `event_datetime` DATETIME NOT NULL,
     `event_image1` VARCHAR(255) NOT NULL,
     `event_image2` VARCHAR(255) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `event` (
 CREATE TABLE IF NOT EXISTS `orders` (
     `order_id` INT(11) NOT NULL AUTO_INCREMENT,
     `order_cost` DECIMAL(6,2) NOT NULL,
-    `order_status` VARCHAR(100) NOT NULL DEFAULT 'on_hold',
+    `order_status` VARCHAR(100) NOT NULL DEFAULT 'Unpaid',
     `user_id` INT(11) NOT NULL,
     `user_phone` VARCHAR(10) NOT NULL,
     `user_email` VARCHAR(255) NOT NULL,

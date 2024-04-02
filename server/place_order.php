@@ -12,7 +12,7 @@ if(isset($_POST['place_order'])){
     $total=$_SESSION['total'];
     $order_status="on_hold";
     $order_date=date('Y-m-d H:i:s');
-    $user_id=1;
+    $user_id=$_SESSION['user_id'];
     //inserting order into orders table
     $stmt=$conn->prepare("INSERT INTO orders (user_id, user_name, user_email, user_phone, user_university, order_cost, order_status, order_date) VALUES (?,?,?,?,?,?,?,?)");
     $stmt->bind_param("issssdss", $user_id, $Name, $email, $phone, $university, $total, $order_status, $order_date);

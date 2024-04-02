@@ -47,3 +47,11 @@ CREATE TABLE IF NOT EXISTS `users` (
     PRIMARY KEY (`user_id`),
     UNIQUE KEY `UX_constraint` (`user_email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE admin (
+    admin_email VARCHAR(255) NOT NULL,
+    admin_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    admin_name VARCHAR(100) NOT NULL
+);

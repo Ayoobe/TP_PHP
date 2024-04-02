@@ -1,6 +1,6 @@
 <?php 
-session_start();
 include('../server/connection.php');
+session_start();
 
 if(isset($_SESSION['admin_logged_in'])){
   header('location: admin_dashboard.php');

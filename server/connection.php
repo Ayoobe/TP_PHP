@@ -1,9 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+$conn = mysqli_connect("localhost", "root", "", "tp_php");
 
-
-$conn=mysqli_connect("localhost","root","","TP_PHP") or die("Could not connect to database");
-
-
-
+if (!$conn) {
+    die("Could not connect to database: " . mysqli_connect_error());
+}
 ?>

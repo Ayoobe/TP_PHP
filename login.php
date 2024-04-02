@@ -17,6 +17,7 @@ if(isset($_POST['login_btn'])){
   $result=$stmt->get_result();
   $row=$result->fetch_assoc();
   if($row){
+    $_SESSION['user_id']=$user_id;
     $_SESSION['user_email']=$email;
     $_SESSION['user_name']=$row['user_name'];
     $_SESSION['user_id']=$row['user_id'];

@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+include ('server/connection.php');
 if(!isset($_SESSION['logged_in'])){
   header('location: login.php');
   exit();
@@ -29,12 +30,17 @@ if(isset($_POST['change_password'])){
     $stmt=$conn->prepare("UPDATE users SET user_password=? WHERE user_email=?");
     $stmt->bind_param("ss", md5($password), $_SESSION['user_email']);
     $stmt->execute();
-    header('location: account.php?success=Password changed successfully');
+    header('location: account.php?message=Password changed successfully');
   }
 }
 
 
-
+if(isset($_SESSION['logged_in'])){
+  $stmt=$conn->prepare("SELECT * FROM orders WHERE user_id=?");
+  $stmt->bind_param("i", $_SESSION['user_id']);
+  $stmt->execute();
+  $orders=$stmt->get_result();}
+   
 
 ?>
 
@@ -112,6 +118,8 @@ if(isset($_POST['change_password'])){
       <div class="col-lg-6 col-md-6 col-sm-12">
         <form id="account-form" method="POST" action="account.php" >
           <p class="text-center" style="color:green"><?php if(isset( $_GET['message'])){ echo $_GET['message'];}?></p>
+          <p class="text-center" style="color:red"><?php if(isset( $_GET['error'])){ echo $_GET['error'];}?></p>
+
           <h3>Change password</h3>
           <hr class="mx-auto">
           <div class="form-group">
@@ -129,12 +137,60 @@ if(isset($_POST['change_password'])){
       </div>
 </section>
 
+<!--order history-->
+<section class="cart container my-5 py-5">
+    <div class="container mt-5">  
+        <h2 class="font-weight-bold">Your Cart</h2>  
+        <hr class="mx-auto">
+    </div>
+    <table class="mt-5 pt-5">
+        <tr>
+            <th>Order ID</th>      
+            <th>Order Total</th>
+            <th>Order Status</th>
+            <th>Date Of Order</th>
+            <th>Order Details</th>
+        </tr>
+
+        <?php while ($order = $orders->fetch_assoc()){ ?>
 
 
+            <tr>
+                <td>
+                    <div class="event-info">
+                        <div>
+                            <p> <?php echo $order['order_id']; ?> </p>
+                        </div>
+                    </div>
+                </td>
 
+                <td> 
+                <span class="event-price"> <?php echo $order['order_cost']; ?> </span>
+                </td>
 
+                <td> 
+                <span class="event-price"> <?php echo $order['order_status']; ?> </span>
+                </td>
 
+                <td> 
+                <span class="event-price"> <?php echo $order['order_date']; ?> </span>
+                </td>
 
+                <td>
+                  <form method="POST" action="order_details.php" > 
+                    <input type="hidden" value="<?php echo $order['order_status'];?>" name="order_status">
+                    <input type="hidden" value="<?php echo $order['order_id'];?>" name='order_id'>
+                    <input name ="order_details_btn" class="btn order-details-btn" type="submit" value="View Details">
+                  </form>
+                </td>
+              
+            </tr>
+          <?php } ?>
+             
+ 
+    </table>
+
+ </section>
 
   
   

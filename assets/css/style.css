@@ -559,3 +559,48 @@ th:last-child{
     color: rgb(255, 255, 255);
     opacity: 1;
 }
+
+
+#price-slider {
+    width: 50%; 
+    margin-left: 0px; 
+
+    
+
+    
+  }
+#price-slider .ui-slider-range {
+    background: #fa2e2e;  
+  }
+
+#price-slider .ui-slider-handle {
+        background: #ffffff;  
+        border: 1px solid #fa2e2e;
+        
+        cursor: pointer;
+        border-radius: 100%;
+
+}
+
+
+  
+.form-check-input[type="radio"]:checked {     
+    background-color: #fa2e2e; 
+    border-color: #ffff; 
+  }
+
+   
+  
+#search-btn{
+    width: 50%;
+    background-color: #fa2e2e;
+    color: #ffffff;
+    border: #fff;
+    border-radius: 20px;
+
+}
+
+#search-btn:hover{
+    transition: opacity 0.4s ease;
+    opacity: .8;
+}

@@ -10,7 +10,7 @@ if(isset($_POST['place_order'])){
     $phone=$_POST['phone'];
     $university=$_POST['university'];
     $total=$_SESSION['total'];
-    $order_status="on_hold";
+    $order_status="Unpaid";
     $order_date=date('Y-m-d H:i:s');
     $user_id=$_SESSION['user_id'];
     //inserting order into orders table

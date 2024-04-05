@@ -6,10 +6,17 @@ if(isset($_GET['search'])) {
   $min_price = isset($_GET['min_price']) ? $_GET['min_price'] : 0;
   $max_price = isset($_GET['max_price']) ? $_GET['max_price'] : 500;
 
-  $stmt = $conn->prepare("SELECT * FROM events WHERE event_category = ? AND event_price BETWEEN ? AND ?");
-  $stmt->bind_param("sii", $category, $min_price, $max_price);
-  $stmt->execute();
-  $events = $stmt->get_result();
+  if ($category === 'all') {
+    $stmt = $conn->prepare("SELECT * FROM events WHERE event_price BETWEEN ? AND ?");
+    $stmt->bind_param("ii", $min_price, $max_price);
+    $stmt->execute();
+    $events = $stmt->get_result();
+  } else {
+    $stmt = $conn->prepare("SELECT * FROM events WHERE event_category = ? AND event_price BETWEEN ? AND ?");
+    $stmt->bind_param("sii", $category, $min_price, $max_price);
+    $stmt->execute();
+    $events = $stmt->get_result();
+  }
 } else {
   $stmt = $conn->prepare("SELECT * FROM events");
   $stmt->execute();
@@ -17,55 +24,7 @@ if(isset($_GET['search'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Events</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-</head>
-<body>
-  <!-- start of navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 fixed-top">
-    <div class="container">
-      <img src="assets/imgs/logo.jpg" >
-      <a class="navbar-brand" href="index.html">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="reserve.html">Reserve</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="account.html">
-              <i class="fas fa-user"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cart.html">
-              <i class="fas fa-shopping-cart"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!-- end of navbar-->
+<?php include('layouts/header.php'); ?>
 
   <div class="container-fluid">
     <div class="row">
@@ -81,6 +40,10 @@ if(isset($_GET['search'])) {
             <div class="row mx-auto container">
               <div class="col-lg-12 col-md-12">
                 <p>Category</p>
+                <div class="form-check">
+                  <input class="form-check-input" value="all" type="radio" name="category" id="category_all"   <?php if(!isset($_GET['category']) || (isset($_GET['category']) && $_GET['category'] == 'all')) echo 'checked'; ?>>
+                  <label class="form-check-label" for="category_all">All</label>
+                </div>
                 <div class="form-check">
                   <input class="form-check-input" value="hackathon" type="radio" name="category" id="category_one"   <?php if(isset($_GET['category']) && $_GET['category'] == 'hackathon') echo 'checked'; ?>>
                   <label class="form-check-label" for="category_one">Hackathon</label>
@@ -103,7 +66,7 @@ if(isset($_GET['search'])) {
               <div class="col-lg-12 col-md-12 col-sm-12">
                 <p>Price</p>
                 <div id="price-slider"></div>
-                <div class="w-50">
+                <div class="w-50 ">
                   <span style="float: left;" id="min-price"></span>
                   <span style="float: right;" id="max-price"></span>
                   <input type="hidden" name="min_price" id="min-price-input" value="<?php echo isset($_GET['min_price']) ? $_GET['min_price'] : 0; ?>">
@@ -112,7 +75,7 @@ if(isset($_GET['search'])) {
               </div>
             </div>
             <div class="form-group my-3 mx-3">
-              <input type="submit" name="search" value="Search" class="btn btn-primary">
+              <input type="submit" name="search" value="Search" id="search-btn">
             </div>
           </form>
         </section>
@@ -145,32 +108,6 @@ if(isset($_GET['search'])) {
     </div>
   </div>
 
-  <!--footer (still needs work)-->
-  <footer class="mt-5 py-5">
-    <div class="container mx-auto">
-      <div class="row">
-        <div class="footer-one col-lg-3 col-md-3 col-sm-12">
-          <img src="assets/img/logo.jpeg" />
-          <p class="pt-3">We host the best events that are out there</p>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <h5 class="pb-2">Follow Us</h5>
-          <ul class="list-unstyled d-flex social-icons">
-            <li class="ms-3">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </li>
-            <li class="ms-3">
-              <a href="#"><i class="fab fa-twitter"></i></a>
-            </li>
-            <li class="ms-3">
-              <a href="#"><i class="fab fa-instagram"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-
   <script>
   $(function() {
     $("#price-slider").slider({
@@ -185,10 +122,9 @@ if(isset($_GET['search'])) {
         $("#max-price-input").val(ui.values[1]);
       }
     });
-    // Display initial values
     $("#min-price").text($("#price-slider").slider("values", 0));
     $("#max-price").text($("#price-slider").slider("values", 1));
   });
   </script>
-</body>
-</html>
+
+ <?php include('layouts/footer.php'); ?>

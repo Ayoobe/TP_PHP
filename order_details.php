@@ -8,6 +8,7 @@ if(isset($_POST['order_id']) && isset($_POST['order_details_btn'])){
     $stmt->bind_param("i", $order_id);
     $stmt->execute();
     $orders= $stmt->get_result();
+    $order_total=calculate_order_total($orders);
   }
 
   else{
@@ -16,6 +17,14 @@ if(isset($_POST['order_id']) && isset($_POST['order_details_btn'])){
   }
   
     
+  function calculate_order_total($orders) {
+    $total = 0;
+    foreach($orders as $order ) {
+        $total += $order['event_price'];
+    }
+    
+    return $total;
+}
 
 
 
@@ -40,7 +49,7 @@ if(isset($_POST['order_id']) && isset($_POST['order_details_btn'])){
         </tr>
 
  
-      <?php while($order = $orders->fetch_assoc() ) { ?>
+      <?php foreach($orders as $order ) { ?>
             <tr>
                 <td>
                     <div class="event-info">
@@ -68,8 +77,10 @@ if(isset($_POST['order_id']) && isset($_POST['order_details_btn'])){
 
     <?php
     if($order_status=="Unpaid"){ ?>
-      <form style="float: right">
-      <input type="submit" class="btn btn-pay" value="Pay Now">
+      <form style="float: right" method="POST" action="payment.php">
+      <input type="hidden" name="order_total" value="<?php echo $order_total?>">
+      <input type="hidden" name="order_status" value="<?php echo $order_status?>">
+      <input type="submit" name="order_pay_btn" class="btn btn-pay" value="Pay Now">
     
       </form>
 

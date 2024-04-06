@@ -2,9 +2,17 @@
  session_start();
  include ('connection.php');
 
+
+if(!isset($_SESSION['logged_in'])){
+    echo "<script>alert('You need to login first')</script>";              
+    header('location: ../login.php');
+    exit();
+}
+
+
 if(isset($_POST['place_order'])){
    
-    //getting user information
+    //getting user info           
     $Name=$_POST['Name'];
     $email=$_POST['email'];
     $phone=$_POST['phone'];
@@ -16,7 +24,15 @@ if(isset($_POST['place_order'])){
     //inserting order into orders table
     $stmt=$conn->prepare("INSERT INTO orders (user_id, user_name, user_email, user_phone, user_university, order_cost, order_status, order_date) VALUES (?,?,?,?,?,?,?,?)");
     $stmt->bind_param("issssdss", $user_id, $Name, $email, $phone, $university, $total, $order_status, $order_date);
-    $stmt->execute();
+    
+    
+    $stmt_status = $stmt->execute();
+
+    if(!$stmt_status){
+        header('location: ../index.php');
+        exit();
+    }
+
     $order_id=$stmt->insert_id;   
 
     //getting events from cart

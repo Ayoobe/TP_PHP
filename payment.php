@@ -1,7 +1,9 @@
 <?php  
 session_start();
 
-
+if(isset($_POST['order_pay_btn'])){
+    $order_status=$_POST['order_status'];
+    $order_total=$_POST['order_total'];}
 
 ?>
 
@@ -18,12 +20,26 @@ session_start();
     </div>
 
     <div class="mx-auto container text-center">
-        <p><?php if (isset($_GET['order_status'])){echo $_GET['order_status'];} ?> </p>
-        <p>Total payment: <?php if(isset($_SESSION['total'])){ echo $_SESSION['total'] ;}?> TND</p>
-        <?php if(isset($_SESSION['total'])){ ?>
+    <?php 
+    if (isset($_POST['order_status']) && $_POST['order_status'] == "Unpaid") { 
+?>
+        <p>Total Payment : <?php echo $_POST['order_total']; ?> TND</p>
         <input class="btn btn-primary" type="submit" value="Pay Now">
-        <?php } ?>
-    </div>
+<?php 
+    } elseif (isset($_SESSION['total']) && $_SESSION['total'] != 0 ){ 
+?>
+        <p>Total payment: <?php echo $_SESSION['total']; ?> TND</p>
+        <input class="btn btn-primary" type="submit" value="Pay Now">
+<?php 
+    } else { 
+?>
+        <p>You Have No Orders</p>
+<?php 
+    } 
+?>
+
+</div>
+
     
   </section>
   
@@ -35,3 +51,4 @@ session_start();
 
   
 <?php include 'layouts/footer.php'; ?>
+

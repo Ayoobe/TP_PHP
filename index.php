@@ -4,11 +4,12 @@
 
   <section id="home">
     <div class="container">
-       
+       <div class="mycontainer">
         <h4>NEW EVENTS!</h4>
-        <h1>For the <span>brightest</span> students!</h1>
+        <h1>For the <span>BRIGHTEST</span> students!</h1>
         <p>You came to the right place</p>
-        <button id="btn1">Reserve Now!</button>
+        <a href="reserve.php"><button id="btn1">Reserve Now!</button></a>
+        </div>
     </div>
    
   </section>
@@ -29,28 +30,29 @@
 
         <!-- 1-->
         <div class="one col-lg-4 col-md-4 col-sm-12 p-0">
-            <img class="img-fluid" src="assets/imgs/club4.png">
+            <img class="img-fluid" src="assets/imgs/workshop.png">
             <div class="details">
                 <h3>Discover Amazing Workshops!</h3>
-                <button class="text-uppercase"> Join Now</button>
+                <a href="reserve.php?category=workshop&min_price=0&max_price=500&search=Search"><button class="text-uppercase">Join Now</button></a>
 
             </div>
         </div>
         <!-- 2-->
         <div class="one col-lg-4 col-md-4 col-sm-12 p-0">
-            <img class="img-fluid" src="assets/imgs/club4.png">
+            <img class="img-fluid" src="assets/imgs/hackathons.png">
             <div class="details">
                 <h3>Compete In Hackathons!</h3>
-                <button class="text-uppercase"> Join Now</button>
+                <a href="reserve.php?category=hackathon&min_price=0&max_price=500&search=Search"><button class="text-uppercase">Join Now</button></a>
 
             </div>
         </div>
         <!-- 3-->
         <div class="one col-lg-4 col-md-4 col-sm-12 p-0">
-            <img class="img-fluid" src="assets/imgs/club4.png">
+            <img class="img-fluid" src="assets/imgs/friends.jpg">
+
             <div class="details">
                 <h3>Make New Friends!</h3>
-                <button class="text-uppercase"> Join Now</button>
+                <a href="reserve.php"><button class="text-uppercase">Join Now</button></a>
             </div>
         </div>
     </div>

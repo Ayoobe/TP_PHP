@@ -94,7 +94,7 @@ if(isset($_SESSION['logged_in'])){
 <!--order history-->
 <section class="cart container my-5 py-5">
     <div class="container mt-5">  
-        <h2 class="font-weight-bold">Your Cart</h2>  
+        <h2 class="font-weight-bold">Your Orders :</h2>  
         <hr class="mx-auto">
     </div>
     <table class="mt-5 pt-5">

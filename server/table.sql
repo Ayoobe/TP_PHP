@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS `event` (
     `event_id` INT(11) NOT NULL AUTO_INCREMENT,
     `event_price` DECIMAL(10,2) NOT NULL,  
     `event_name` VARCHAR(100) NOT NULL,
+    `event_sum` VARCHAR(100) NOT NULL,
     `event_description` TEXT NOT NULL,
     `event_category` ENUM('workshop', 'congress', 'contest','hackathon') NOT NULL,
     `event_datetime` DATETIME NOT NULL,

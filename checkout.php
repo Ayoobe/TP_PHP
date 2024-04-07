@@ -40,7 +40,7 @@ else{
         </div>
         <div class="form-group">
           <label >Phone Number</label>
-          <input type="tel" class="form-control" id="checkout-phone" name="phone" placeholder="Phone Number" required>
+          <input type="number" class="form-control" id="checkout-phone" name="phone" placeholder="Phone Number" required>
         </div>
   
         <div class="form-group">

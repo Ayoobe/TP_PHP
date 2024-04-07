@@ -87,7 +87,7 @@ if(isset($_GET['search'])) {
           <div class="container text-center mt-5 py-5">
             <h3> Our Featured Events:</h3>
             <hr>
-            <p>Featured paragraph text : to complete later</p>
+            <p>A vast array of workshops, hackathons, congresses and contests for the bright students of INSAT.</p>
           </div>
           <div class="row mx-auto text-center container-fluid">
             <?php while ($event = $events->fetch_assoc()) { ?>
@@ -95,7 +95,7 @@ if(isset($_GET['search'])) {
               <img class="img-fluid mb-3" src="assets/imgs/<?php echo $event['event_image1'] ?>" style="height: 200px;">
               <div class="event-infos">
                 <h4 class="p-name"><?php echo $event['event_name'] ?></h4>
-                <h5 class="p-info">Mini details to add to db later</h5>
+                <h5 class="p-info"><?php echo $event['event_sum'] ?></h5>
                 <h5 class="p-price"><?php echo $event['event_price'] ?> TND</h5>
                 <a class="res-button" href="single-event.php?event_id=<?php echo $event['event_id'] ?>">Register Now</a>
               </div>

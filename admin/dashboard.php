@@ -54,13 +54,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manage Users</a>
+                        <a class="nav-link" href="manage_users.php">Manage Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manage Admins</a>
+                        <a class="nav-link" href="manage_admins.php">Manage Admins</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manage Events</a>
+                        <a class="nav-link" href="analytics.php">Analytics Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="manage_events.php">Manage events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
@@ -85,6 +88,7 @@
             <a href="manage_users.php" class="list-group-item list-group-item-action">Manage Users</a>
             <a href="manage_admins.php" class="list-group-item list-group-item-action">Manage Admins</a>
             <a href="manage_events.php" class="list-group-item list-group-item-action">Manage Events</a>
+            <a href="analytics.php" class="list-group-item list-group-item-action">Analytics</a>
         </div>
     </div>
 

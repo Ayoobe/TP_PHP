@@ -5,42 +5,40 @@ require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$mail->isSMTP();
-$mail->Host = "smtp.gmail.com";
-$mail->SMTPAuth = true;
-$mail->Username = "adefthkom0@gmail.com";
-$mail->Password = "trvq dvhk vsee hplt";
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-$mail->Post = 587;
+$name = $_POST['name'] ?? '';  // Assign empty string if not set
+$email = $_POST['email'] ?? '';
+$subject = $_POST['subject'] ?? '';
+$message = $_POST['message'] ?? '';
 
-
-$name = $_POST['name'];
-$email = $_POST['email'];
-$subject = $_POST['subject'];
-$message = $_POST['message'];
-
-$mail = new PHPMailer(true);
+if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+  echo "Please fill out all required fields.";
+  exit;
+}
 
 try {
+  $mail = new PHPMailer(true);
+
   $mail->isSMTP();
-  $mail->Host = $host;
+  $mail->Host = "smtp.gmail.com";
   $mail->SMTPAuth = true;
+  $mail->Username = "adefthukom0@gmail.com";  
+  $mail->Password = "trvq dvhk vsee hplt";  
   $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-  $mail->Port = $port;
+  $mail->Port = 587;
 
-  $mail->Username = $username;
-  $mail->Password = $password;
-  $mail->setFrom($username, $from_name);
+  $mail->setFrom($mail->Username, "Tiskerti Contact Page"); 
 
-  $mail->addAddress('recipient_email@example.com');
+  $mail->addAddress('adefthkom0@gmail.com');
 
   $mail->isHTML(false);
   $mail->Subject = $subject;
   $mail->Body = "Name: $name\nEmail: $email\nSubject: $subject\nMessage:\n$message";
 
   $mail->send();
-  echo 'Message has been sent successfully.';
+  header('Location: index.php?success=true');  
+  exit;
 
 } catch (Exception $e) {
   echo "Error sending email: {$mail->ErrorInfo}";
 }
+

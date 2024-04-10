@@ -5,7 +5,7 @@ require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$name = $_POST['name'] ?? '';  // Assign empty string if not set
+$name = $_POST['name'] ?? '';  
 $email = $_POST['email'] ?? '';
 $subject = $_POST['subject'] ?? '';
 $message = $_POST['message'] ?? '';
@@ -42,6 +42,5 @@ if (empty($name) || empty($email) || empty($subject) || empty($message)) {
   }
 }
 
-// Return JSON response
 header('Content-Type: application/json');
 echo json_encode(['emailSent' => $emailSent, 'error' => isset($error) ? $error : null]);

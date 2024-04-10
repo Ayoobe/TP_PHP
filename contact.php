@@ -30,7 +30,7 @@
             <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
           </div>
           <div class="text-center">
-             <button type="submit" class="btn btn-primary" id="login-btn">Submit</button>
+            <button type="submit" class="btn" id="login-btn">Submit</button>
             <span id="sent-text" style="display: none;">Sent!</span>
           </div>
         </form>

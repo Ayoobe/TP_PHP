@@ -10,35 +10,38 @@ $email = $_POST['email'] ?? '';
 $subject = $_POST['subject'] ?? '';
 $message = $_POST['message'] ?? '';
 
+$emailSent = false;
+
 if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-  echo "Please fill out all required fields.";
-  exit;
+  $error = "Please fill out all required fields.";
+} else {
+  try {
+    $mail = new PHPMailer(true);
+
+    $mail->isSMTP();
+    $mail->Host = "smtp.gmail.com";
+    $mail->SMTPAuth = true;
+    $mail->Username = "adefthukom0@gmail.com";  
+    $mail->Password = "trvq dvhk vsee hplt";  
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    $mail->setFrom($mail->Username, "Tiskerti Contact Page"); 
+
+    $mail->addAddress('achref.benammar404@gmail.com');
+
+    $mail->isHTML(false);
+    $mail->Subject = $subject;
+    $mail->Body = "Name: $name\nEmail: $email\nSubject: $subject\nMessage:\n$message";
+
+    $mail->send();
+    
+    $emailSent = true;
+  } catch (Exception $e) {
+    $error = "Error sending email: " . $mail->ErrorInfo;
+  }
 }
 
-try {
-  $mail = new PHPMailer(true);
-
-  $mail->isSMTP();
-  $mail->Host = getenv('SMTP_HOST');
-  $mail->SMTPAuth = true;
-  $mail->Username = getenv('SMTP_USERNAME');
-  $mail->Password = getenv('SMTP_PASSWORD');
-  $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-  $mail->Port = getenv('SMTP_PORT');
-
-  $mail->setFrom($mail->Username, "Tiskerti Contact Page"); 
-
-  $mail->addAddress(getenv('EMAIL_ADDRESS'));
-
-  $mail->isHTML(false);
-  $mail->Subject = $subject;
-  $mail->Body = "Name: $name\nEmail: $email\nSubject: $subject\nMessage:\n$message";
-
-  $mail->send();
-  header('Location: index.php?success=true');  
-  exit;
-
-} catch (Exception $e) {
-  echo "Error sending email: {$mail->ErrorInfo}";
-}
-
+// Return JSON response
+header('Content-Type: application/json');
+echo json_encode(['emailSent' => $emailSent, 'error' => isset($error) ? $error : null]);

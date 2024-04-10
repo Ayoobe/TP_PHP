@@ -5,11 +5,14 @@ require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$host = 'smtp.example.com';
-$port = 587;
-$username = 'your_email@example.com';
-$password = 'your_password';
-$from_name = 'Your Name';
+$mail->isSMTP();
+$mail->Host = "smtp.gmail.com";
+$mail->SMTPAuth = true;
+$mail->Username = "adefthkom0@gmail.com";
+$mail->Password = "trvq dvhk vsee hplt";
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+$mail->Post = 587;
+
 
 $name = $_POST['name'];
 $email = $_POST['email'];

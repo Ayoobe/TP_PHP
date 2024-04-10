@@ -1,67 +1,97 @@
-<?php
-// Database connection
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "your_database";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+<?php  
+include('../server/connection.php');
+session_start();
 
 // Add user
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_user'])) {
-    $user_name = $_POST['user_name'];
-    $user_email = $_POST['user_email'];
-    $password = $_POST['password'];
+    $admin_name = $_POST['name'];
+    $admin_email = $_POST['email'];
+    $admin_password = md5($_POST['password']);
 
-    $sql = "INSERT INTO users (user_name, user_email, password) VALUES ('$user_name', '$user_email', '$password')";
+    $sql = "INSERT INTO admins (admin_name, admin_email, admin_password) VALUES ('$admin_name', '$admin_email', '$admin_password')";
     if ($conn->query($sql) === TRUE) {
-        echo "User added successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        header('location: manage_users.php?message=Admin added successfully');
+        exit(); 
+    } 
+    else {
+        header('location: manage_users.php?error=Error occurred while adding admin: ' . $conn->error);
+        exit(); 
     }
 }
 
 // Remove user
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_user'])) {
-    $user_id = $_POST['user_id'];
+    $admin_id = $_POST['id'];
 
-    $sql = "DELETE FROM users WHERE user_id='$user_id'";
+    $sql = "DELETE FROM admins WHERE admin_id='$admin_id'";
     if ($conn->query($sql) === TRUE) {
-        echo "User removed successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        header('location: manage_users.php?message=Admin removed successfully');
+        exit(); 
+    } 
+    else {
+        header('location: manage_users.php?error=Error occurred while removing admin: ' . $conn->error);
+        exit(); 
     }
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage User Accounts</title>
-</head>
-<body>
-    <h2>Add User</h2>
-    <form method="post" action="">
-        <input type="text" name="user_name" placeholder="Username" required><br>
-        <input type="email" name="user_email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <input type="submit" name="add_user" value="Add User">
+
+
+
+
+
+
+
+<?php include('../layouts/admin_header.php'); ?>
+
+
+<section class="my-5 py-5">
+  <div class="container text-center mt-3 pt-5">
+  <p class="text-center" style="color:green"><?php if(isset( $_GET['message'])){ echo $_GET['message'];}?></p>
+  <p class="text-center" style="color:red"><?php if(isset( $_GET['error'])){ echo $_GET['error'];}?></p>
+
+    <h2 class="form-weight-bold">Admin Manager</h2>
+    <hr class="mx-auto">
+  </div>
+  <div class="mx-auto container">
+    <form id="login-form" action="manage_users.php" method="POST">
+        <h4>Add admin</h4>
+      <p style="color: red" class="text-center"><?php if(isset($_GET['error'])){echo $_GET['error'];} ?></p>
+      <div class="form-group">
+        <label >Admin Name</label>
+        <input type="text" class="form-control" id="login-password" name="name" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <label >Email</label>
+        <input type="text" class="form-control" id="login-email" name="email" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <label >Password</label>
+        <input type="password" class="form-control" id="login-password" name="password" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <input type="Submit" class="btn" id="login-btn" name="add_user" value="Add Admin">
+      </div>
+
+    </form>
+<br>
+<br>
+    <form id="login-form" action="manage_users.php" method="POST">
+        <h4>Delete admin</h4>
+      <p style="color: red" class="text-center"><?php if(isset($_GET['error'])){echo $_GET['error'];} ?></p>
+      <div class="form-group">
+        <label >Admin ID</label>
+        <input type="text" class="form-control" id="login-password" name="id" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <input type="Submit" class="btn" id="login-btn"  name="remove_user" value="Remove Admin">
+      </div>
+
     </form>
 
-    <h2>Remove User</h2>
-    <form method="post" action="">
-        <input type="text" name="user_id" placeholder="User ID to remove" required><br>
-        <input type="submit" name="remove_user" value="Remove User">
-    </form>
-</body>
-</html>
 
-<?php
-// Close connection
-$conn->close();
-?>
+  </div>
+</section>
+
+<?php include('../layouts/footer.php'); ?>
+

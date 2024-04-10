@@ -3,7 +3,7 @@ include('../server/connection.php');
 session_start();
 
 if(isset($_SESSION['admin_logged_in'])){
-  header('location: admin_dashboard.php');
+  header('location: dashboard.php');
   exit();
 }
 
@@ -22,10 +22,10 @@ if(isset($_POST['login_btn'])){
     $_SESSION['admin_name']=$row['admin_name'];
     $_SESSION['admin_id']=$row['admin_id'];
     $_SESSION['admin_logged_in']=true;
-    header('location: admin_dashboard.php');
+    header('location: dashboard.php');
   }
   else{
-    header('location: admin_login.php?error=Incorrect email or password');
+    header('location: index.php?error=Incorrect email or password');
   }
 }
 ?>
@@ -120,7 +120,7 @@ if(isset($_POST['login_btn'])){
     <hr class="mx-auto">
   </div>
   <div class="mx-auto container">
-    <form id="login-form" action="login.php" method="POST">
+    <form id="login-form" action="index.php" method="POST">
       <p style="color: red" class="text-center"><?php if(isset($_GET['error'])){echo $_GET['error'];} ?></p>
       <div class="form-group">
         <label for="login-email">Email</label>
@@ -137,31 +137,7 @@ if(isset($_POST['login_btn'])){
   </div>
 </section>
 
-  <!-- footer that needs work-->
-<footer class="mt-5 py-5">
-    <div class="container mx-auto">
-      <div class="row">
-        <div class="footer-one col-lg-3 col-md-3 col-sm-12">
-          <img src="assets/img/logo.jpeg" />
-          <p class="pt-3">We host the best events that are out there</p>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <h5 class="pb-2">Follow Us</h5>
-          <ul class="list-unstyled d-flex social-icons">
-            <li class="ms-3">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </li>
-            <li class="ms-3">
-              <a href="#"><i class="fab fa-twitter"></i></a>
-            </li>
-            <li class="ms-3">
-              <a href="#"><i class="fab fa-instagram"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+  
   
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

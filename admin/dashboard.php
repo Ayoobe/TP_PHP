@@ -46,7 +46,7 @@
     <!-- Admin Dashboard Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <img src="assets/imgs/logo.jpg" alt="Logo" class="navbar-brand">
+            <img src="../assets/imgs/logo.png" alt="Logo" class="navbar-brand">
             <a class="navbar-brand" href="#">Admin Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -65,16 +65,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="manage_events.php">Manage events</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-user"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -83,7 +74,7 @@
     <!-- Admin Dashboard Content -->
     <div class="container mt-5">
         <h2>Welcome, Admin!</h2>
-        <p>Please select an option from below to manage your business:</p>
+        <p>Please select an option from below to manage your business :</p>
         <div class="list-group">
             <a href="manage_users.php" class="list-group-item list-group-item-action">Manage Users</a>
             <a href="manage_admins.php" class="list-group-item list-group-item-action">Manage Admins</a>
@@ -92,7 +83,7 @@
         </div>
     </div>
 
-    <footer class="mt-5 py-5 bg-dark text-light">
+<footer class="mt-5 py-5 bg-dark text-light">
     <div class="container mx-auto">
         <div class="row">
             <div class="footer-one col-lg-3 col-md-3 col-sm-12">

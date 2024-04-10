@@ -70,7 +70,7 @@ if(isset($_POST['register'])){
           </div>
       <div class="form-group">
         <label >Email</label>
-        <input type="text" class="form-control" id="register-email" name="email" placeholder="Email" required>
+        <input type="email" class="form-control" id="register-email" name="email" placeholder="Email" required>
       </div>
       <div class="form-group">
         <label >Password</label>

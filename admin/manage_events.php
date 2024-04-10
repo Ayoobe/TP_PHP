@@ -161,7 +161,7 @@ if(isset($_POST["add_event"]) ){
                 <td>
                   <form method="POST" action="manage_events.php" > 
                     <input type="hidden" value="<?php echo $event['event_id'];?>" name='event_id'>
-                    <input name ="delete_btn" class="btn order-details-btn" type="submit" name="delete" value="Delete">
+                    <input name ="delete_btn" class="btn order-details-btn" type="submit" value="Delete">
                   </form>
                 </td>
             </tr>

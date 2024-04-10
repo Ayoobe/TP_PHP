@@ -3,14 +3,14 @@ include('../server/connection.php');
 session_start();
 
 // Add user
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_user'])) {
-    $admin_name = $_POST['name'];
-    $admin_email = $_POST['email'];
-    $admin_password = md5($_POST['password']);
+if (isset($_POST['add_user'])) {
+    $user_name = $_POST['name'];
+    $user_email = $_POST['email'];
+    $user_password = md5($_POST['password']);
 
-    $sql = "INSERT INTO admins (admin_name, admin_email, admin_password) VALUES ('$admin_name', '$admin_email', '$admin_password')";
+    $sql = "INSERT INTO users (user_name, user_email, user_password) VALUES ('$user_name', '$user_email', '$user_password')";
     if ($conn->query($sql) === TRUE) {
-        header('location: manage_users.php?message=Admin added successfully');
+        header('location: manage_users.php?message=User added successfully');
         exit(); 
     } 
     else {
@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_user'])) {
 }
 
 // Remove user
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_user'])) {
-    $admin_id = $_POST['id'];
+if (isset($_POST['delete'])) {
+    $user_id = $_POST['user_id'];
 
-    $sql = "DELETE FROM admins WHERE admin_id='$admin_id'";
+    $sql = "DELETE FROM users WHERE user_id='$user_id'";
     if ($conn->query($sql) === TRUE) {
-        header('location: manage_users.php?message=Admin removed successfully');
+        header('location: manage_users.php?message=User removed successfully');
         exit(); 
     } 
     else {
@@ -45,52 +45,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_user'])) {
 <?php include('../layouts/admin_header.php'); ?>
 
 
-<section class="my-5 py-5">
-  <div class="container text-center mt-3 pt-5">
+<section class="">
+  <div class="container text-center ">
   <p class="text-center" style="color:green"><?php if(isset( $_GET['message'])){ echo $_GET['message'];}?></p>
   <p class="text-center" style="color:red"><?php if(isset( $_GET['error'])){ echo $_GET['error'];}?></p>
 
-    <h2 class="form-weight-bold">Admin Manager</h2>
+    <h2 class="form-weight-bold">User Manager</h2>
     <hr class="mx-auto">
   </div>
   <div class="mx-auto container">
     <form id="login-form" action="manage_users.php" method="POST">
-        <h4>Add admin</h4>
+        <h4>Add User</h4>
       <p style="color: red" class="text-center"><?php if(isset($_GET['error'])){echo $_GET['error'];} ?></p>
       <div class="form-group">
-        <label >Admin Name</label>
+        <label >User Name</label>
         <input type="text" class="form-control" id="login-password" name="name" placeholder="Password" required>
       </div>
       <div class="form-group">
         <label >Email</label>
-        <input type="text" class="form-control" id="login-email" name="email" placeholder="Email" required>
+        <input type="email" class="form-control" id="login-email" name="email" placeholder="Email" required>
       </div>
       <div class="form-group">
         <label >Password</label>
         <input type="password" class="form-control" id="login-password" name="password" placeholder="Password" required>
       </div>
       <div class="form-group">
-        <input type="Submit" class="btn" id="login-btn" name="add_user" value="Add Admin">
+        <input type="Submit" class="btn" id="login-btn" name="add_user" value="Add User">
       </div>
 
     </form>
-<br>
-<br>
-    <form id="login-form" action="manage_users.php" method="POST">
-        <h4>Delete admin</h4>
-      <p style="color: red" class="text-center"><?php if(isset($_GET['error'])){echo $_GET['error'];} ?></p>
-      <div class="form-group">
-        <label >Admin ID</label>
-        <input type="text" class="form-control" id="login-password" name="id" placeholder="Password" required>
-      </div>
-      <div class="form-group">
-        <input type="Submit" class="btn" id="login-btn"  name="remove_user" value="Remove Admin">
-      </div>
-
-    </form>
+</section>
 
 
-  </div>
+
+<section class="cart container ">
+    <div class="container mt-5">  
+        <h2 class="font-weight-bold">Existing Users :</h2>  
+        <hr class="mx-auto">
+    </div>
+    <table class="mt-5 pt-5">
+        <tr>
+            <th>user ID</th>   
+            <th>User name</th>   
+            <th>User email</th>
+            <th>Delete</th>
+        </tr>
+        
+        <?php $sql = "SELECT * FROM users";
+            $result = $conn->query($sql);
+        while ($user = $result->fetch_assoc()){ ?>
+
+
+            <tr>
+                <td>
+                    <div class="event-info">
+                        <div>
+                            <p> <?php echo $user['user_id']; ?> </p>
+                        </div>
+                    </div>
+                </td>
+
+                <td> 
+                <span class="event-price"> <?php echo $user['user_name']; ?> </span>
+                </td>
+
+                <td> 
+                <span class="event-price"> <?php echo $user['user_email']; ?> </span>
+                </td>
+
+                <td>
+                  <form method="POST" action="manage_users.php" > 
+                    <input type="hidden" value="<?php echo $user['user_id'];?>" name='user_id'>
+                    <input class="btn order-details-btn" type="submit" name="delete" value="Delete">
+                  </form>
+                </td>
+            </tr>
+    
+        <?php } ?>
+    </table>
 </section>
 
 <?php include('../layouts/footer.php'); ?>

@@ -36,7 +36,7 @@ else{
             </div>
         <div class="form-group">
           <label >Email</label>
-          <input type="text" class="form-control" id="checkout-email" name="email" placeholder="Email" required>
+          <input type="email" class="form-control" id="checkout-email" name="email" placeholder="Email" required>
         </div>
         <div class="form-group">
           <label >Phone Number</label>

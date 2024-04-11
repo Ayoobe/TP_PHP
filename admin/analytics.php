@@ -1,17 +1,6 @@
 <?php
-// Database connection function
-function connectDB() {
-    $servername = "localhost";
-    $username = "username";
-    $password = "password";
-    $dbname = "your_database";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    return $conn;
-}
+include('../server/connection.php');
+session_start();
 
 function getDailyTicketSales($conn) {
     $sql = "SELECT DATE(order_date) AS date, COUNT(*) AS sales FROM orders GROUP BY DATE(order_date)";
@@ -65,7 +54,6 @@ function closeDB($conn) {
     $conn->close();
 }
 
-$conn = connectDB();
 $dailyTicketSales = getDailyTicketSales($conn);
 $dailyEventSales = getDailyEventSales($conn);
 $eventRanking = getEventRanking($conn);

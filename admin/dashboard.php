@@ -1,4 +1,8 @@
-
+<?php
+if(!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in']!=true){
+    header('location: index.php');
+    exit();
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +14,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        /* Custom CSS for subtle red accents */
         .navbar-light .navbar-nav .nav-link {
             color: #000;
         }

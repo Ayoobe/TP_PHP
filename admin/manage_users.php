@@ -2,6 +2,13 @@
 include('../server/connection.php');
 session_start();
 
+
+
+if(!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in']!=true){
+    header('location: index.php');
+    exit();
+}
+
 // Add user
 if (isset($_POST['add_user'])) {
     $user_name = $_POST['name'];

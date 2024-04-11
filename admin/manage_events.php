@@ -3,6 +3,13 @@ include('../layouts/admin_header.php');
 include('../server/connection.php');
 session_start();
 
+
+if(!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in']!=true){
+    header('location: index.php');
+    exit();
+}
+
+
 if(isset($_POST['event_id']) && isset($_POST['delete_btn'])){
     $event_id = $_POST['event_id'];
     $stmt = $conn->prepare("DELETE FROM events WHERE event_id = ?");

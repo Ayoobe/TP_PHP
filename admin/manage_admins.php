@@ -53,7 +53,7 @@ if (isset($_POST['remove_user'])) {
     <hr class="mx-auto">
   </div>
   <div class="mx-auto container">
-    <form id="login-form" action="manage_users.php" method="POST">
+    <form id="login-form" action="manage_admins.php" method="POST">
         <h4>Add admin</h4>
       <p style="color: red" class="text-center"><?php if(isset($_GET['error'])){echo $_GET['error'];} ?></p>
       <div class="form-group">
@@ -75,7 +75,7 @@ if (isset($_POST['remove_user'])) {
     </form>
 <br>
 <br>
-    <form id="login-form" action="manage_users.php" method="POST">
+    <form id="login-form" action="manage_admins.php" method="POST">
         <h4>Delete admin</h4>
       <p style="color: red" class="text-center"><?php if(isset($_GET['error'])){echo $_GET['error'];} ?></p>
       <div class="form-group">

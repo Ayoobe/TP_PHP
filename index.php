@@ -1,4 +1,22 @@
-<?php include('layouts/header.php'); ?>
+<?php include('layouts/header.php'); 
+
+ include ('server/get_featured_events.php');
+
+//setting up the database  for first time server setup
+$sql = "SHOW DATABASES LIKE 'tp_php'";
+$result = $conn->query($sql);
+
+if ($result->num_rows === 0) {
+    $sqlScript = file_get_contents('server/table.sql');
+
+    if ($conn->multi_query($sqlScript)) {
+        echo "Script executed successfully.";
+    } else {
+        echo "Error executing script: " . $conn->error;
+    }
+} 
+
+?>
 
   <!-- start of home section -->
 
@@ -70,7 +88,6 @@
 
     <div class="row mx-auto text-center container-fluid">
 
-    <?php  include ('server/get_featured_events.php'); ?>
 
     <?php while($row = $featured_events->fetch_assoc()) { ?>
         <div class="myevent text-center col-lg-4 col-md-4 col-sm-12">

@@ -14,6 +14,7 @@ Insat Tickets is a web-based event reservation system designed to simplify event
 - **Order Management:** Admins can see orders that user's have confirmed and set the payment status for these orders.
 - **User Management:** Admins can manage user accounts, including creating, updating, and deleting user accounts.
 - **Admin Account Management:** Admins have access to manage by adding and deleting other admin accounts.
+- **Analytics:** Admins can view analytics about the website, including user engagement, event popularity, and reservation trends.
 
 ## Technologies Used
 - PHP: Backend development

@@ -19,7 +19,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <img src="../assets/imgs/logo.png" alt="Logo" class="navbar-brand">
-            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <a class="navbar-brand" href="dashboard.php">Admin Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,10 +32,10 @@
                         <a class="nav-link" href="manage_admins.php">Manage Admins</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="analytics.php">Analytics Page</a>
+                        <a class="nav-link" href="manage_events.php">Manage events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="manage_events.php">Manage events</a>
+                        <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>
                     
                 </ul>

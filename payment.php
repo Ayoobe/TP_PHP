@@ -1,5 +1,7 @@
 <?php  
 session_start();
+$pageTitle="Payment";
+
 
 if(isset($_POST['order_pay_btn'])){
     $order_status=$_POST['order_status'];

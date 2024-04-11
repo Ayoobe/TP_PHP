@@ -1,4 +1,6 @@
 <?php
+$pageTitle="Order Details";
+
 include ('server/connection.php');
 
 if(isset($_POST['order_id']) && isset($_POST['order_details_btn'])){

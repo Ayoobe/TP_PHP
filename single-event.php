@@ -13,6 +13,8 @@ if(isset($_GET['event_id'])) {
 else {
     header('Location: index.php');
 }
+$pageTitle="Reserve Now";
+
 ?>
 
 <?php include('layouts/header.php'); ?>

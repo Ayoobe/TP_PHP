@@ -1,5 +1,7 @@
 <?php
 include ('server/connection.php');
+$pageTitle="Reserve ";
+
 
 if(isset($_GET['search'])) {
   $category = $_GET['category'];

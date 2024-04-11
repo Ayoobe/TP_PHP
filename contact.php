@@ -1,4 +1,8 @@
-<?php include('layouts/header.php'); ?>
+<?php
+$pageTitle="Contact Us"; 
+include('layouts/header.php'); 
+
+?>
 
 <!-- Contact form -->
 <section id="contact" class="py-5 bg-light text-dark">

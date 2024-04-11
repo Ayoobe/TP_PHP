@@ -62,9 +62,10 @@
 <!-- featured-->
 <section id="featured" class="my-5 pb-5">
     <div class="container text-center mt-5 py-5">
-        <h3> Our Featured Events:</h3>
+        <h3> Our Featured Events</h3>
         <hr>
-        <p>Featured paragraph text : to complete later</p>
+        <p>A vast array of enticing activities, hectic contests, and amazing networking opportunities is awaiting you!  </p>
+        <p>So check out our featured events below now!  </p>
     </div>
 
     <div class="row mx-auto text-center container-fluid">

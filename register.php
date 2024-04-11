@@ -1,6 +1,8 @@
 <?php
 include ('server/connection.php');
 session_start();
+$pageTitle="Register";
+
 
 if(isset($_SESSION['logged_in'])){
   header('location: index.php');

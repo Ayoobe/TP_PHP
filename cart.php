@@ -1,5 +1,6 @@
 <?php
 session_start();
+$pageTitle="My Cart";
 
 if (isset($_POST['add_to_cart'])) {
     if (isset($_SESSION['cart'])) {

@@ -26,7 +26,7 @@ if (empty($name) || empty($email) || empty($subject) || empty($message)) {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
-    $mail->setFrom($mail->Username, "Tiskerti Contact Page"); 
+    $mail->setFrom($mail->Username, "Insat Events Contact Page"); 
 
     $mail->addAddress('achref.benammar404@gmail.com');
 

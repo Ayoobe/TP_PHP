@@ -11,9 +11,8 @@ if(isset($_POST['login_btn'])){
   $email=$_POST['email'];
   $password=$_POST['password'];
 
-  // Assuming you have a table named 'admins' for storing admin credentials
   $stmt=$conn->prepare("SELECT * FROM admins WHERE admin_email=? AND admin_password=?");
-  $stmt->bind_param("ss", $email, md5($password)); // You should use more secure hashing methods like bcrypt instead of md5
+  $stmt->bind_param("ss", $email, md5($password)); 
   $stmt->execute();
   $result=$stmt->get_result();
   $row=$result->fetch_assoc();

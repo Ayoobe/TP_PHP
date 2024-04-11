@@ -4,7 +4,7 @@
 .footer {
   position: relative;
   width: 100%;
-  background: #141010;  
+  background: #2b2b2b;  
   height: 250px;
   padding: 20px 50px;
   display: flex;

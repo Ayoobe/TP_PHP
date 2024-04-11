@@ -1,5 +1,7 @@
 <?php  
 session_start();
+$pageTitle="Checkout";
+
 
 if(!empty($_SESSION['cart']) && isset($_POST['checkout'])){
 

@@ -21,7 +21,6 @@ Insat Tickets is a web-based event reservation system designed to simplify event
 - HTML/CSS/JavaScript: Frontend development
 - Composer: Dependency management
 - PHPMailer: For sending emails
-- [Add any additional technologies used]
 
 ## Installation
 1. Clone the repository:

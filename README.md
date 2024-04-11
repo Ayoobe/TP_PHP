@@ -1,6 +1,6 @@
-# Tiskerti - RSVP Event Reservation System
+# INSAT Tickets - RSVP Event Reservation System
 
-Tiskerti is a web-based event reservation system designed to simplify event management and RSVP processes. It provides features for users to reserve events, search for events, manage their cart, and more. Additionally, it offers administrative functionalities such as analytics, user management, and admin account management.
+Insat Tickets is a web-based event reservation system designed to simplify event management and RSVP processes. It provides features for users to reserve events, search for events, manage their cart, and more. Additionally, it offers administrative functionalities such as order management(confirm cash payment), user management, updating the events list, and admin account management.
 
 ## Features
 
@@ -10,9 +10,10 @@ Tiskerti is a web-based event reservation system designed to simplify event mana
 - **Cart Management:** Users can manage their cart, view selected events, and proceed with the reservation process.
 
 ### For Admins:
-- **Analytics:** Admins can view analytics and insights related to event reservations, user activities, etc.
+- **Event Management:** Admins can view add new events to the database (including their names and descirpiton ) and delete existing ones.
+- **Order Management:** Admins can see orders that user's have confirmed and set the payment status for these orders.
 - **User Management:** Admins can manage user accounts, including creating, updating, and deleting user accounts.
-- **Admin Account Management:** Admins have access to manage other admin accounts, including permissions and roles.
+- **Admin Account Management:** Admins have access to manage by adding and deleting other admin accounts.
 
 ## Technologies Used
 - PHP: Backend development
@@ -25,7 +26,7 @@ Tiskerti is a web-based event reservation system designed to simplify event mana
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/Tiskerti.git
+   git clone https://github.com/Ayoobe/TP_PHP.git
 2. Install PHPMailer using Composer:
     ```bash
     composer install

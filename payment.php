@@ -7,6 +7,14 @@ if(isset($_POST['order_pay_btn'])){
     $order_status=$_POST['order_status'];
     $order_total=$_POST['order_total'];}
 
+
+if(isset($_POST['pay'])){
+    unset($_SESSION['cart']);
+    $_SESSION['total']=0;
+    header('location: index.php');
+
+}
+
 ?>
 
 
@@ -31,7 +39,9 @@ if(isset($_POST['order_pay_btn'])){
     } elseif (isset($_SESSION['total']) && $_SESSION['total'] != 0 ){ 
 ?>
         <p>Total payment: <?php echo $_SESSION['total']; ?> TND</p>
-        <input class="btn btn-primary" type="submit" value="Pay Now">
+        <form action="payment.php" method="POST">
+        <input class="btn btn-primary" type="submit" value="Pay Now" name="pay">
+        </form>
 <?php 
     } else { 
 ?>

@@ -63,7 +63,4 @@ else{
 
 
 
-
-  
-  
 <?php include('layouts/footer.php'); ?>

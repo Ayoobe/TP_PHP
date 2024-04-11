@@ -34,6 +34,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="manage_events.php">Manage events</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="manage_orders.php">Manage Orders</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>

@@ -16,6 +16,8 @@ if($_SESSION['admin_logged_in']!=true){
             <a href="manage_users.php" class="list-group-item list-group-item-action">Manage Users</a>
             <a href="manage_admins.php" class="list-group-item list-group-item-action">Manage Admins</a>
             <a href="manage_events.php" class="list-group-item list-group-item-action">Manage Events</a>
+            <a href="manage_orders.php" class="list-group-item list-group-item-action">Manage Orders</a>
+
         </div>
     </div>
     <br><br><br><br><br><br>

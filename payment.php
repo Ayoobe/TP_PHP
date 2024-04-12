@@ -40,7 +40,7 @@ if(isset($_POST['pay'])){
 ?>
         <p>Total payment: <?php echo $_SESSION['total']; ?> TND</p>
         <form action="payment.php" method="POST">
-        <input class="btn btn-primary" type="submit" value="Pay Now" name="pay">
+        <input class="btn btn-primary" type="submit" value="Reserve Now" name="pay">
         </form>
 <?php 
     } else { 
